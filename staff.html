@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Portal | Redemption Road MG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon-orange: #FF9F1C; --neon-orange-light: #FFB347; --dark-bg: #0a0a0a; --dark-bg-secondary: #141414; --dark-bg-tertiary: #1a1a1a; --text-primary: #ffffff; --text-secondary: #a0a0a0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text-primary); }
+        h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+        
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; background: rgba(10, 10, 10, 0.98); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--neon-orange); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--neon-orange); }
+        
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .tab { padding: 1rem 2rem; background: transparent; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1rem; font-weight: 500; transition: all 0.3s; border-radius: 5px 5px 0 0; }
+        .tab:hover { color: var(--text-primary); background: var(--dark-bg-secondary); }
+        .tab.active { color: var(--neon-orange); background: var(--dark-bg-secondary); border-bottom: 2px solid var(--neon-orange); }
+        
+        main { padding: 120px 2rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .page-header { text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { font-size: clamp(2rem, 6vw, 4rem); color: var(--neon-orange); }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .upload-zone {
+            border: 2px dashed rgba(255,159,28,0.3); border-radius: 15px; padding: 3rem; text-align: center;
+            background: var(--dark-bg-secondary); transition: all 0.3s; cursor: pointer;
+        }
+        .upload-zone:hover { border-color: var(--neon-orange); background: rgba(255,159,28,0.05); }
+        .upload-zone i { font-size: 3rem; color: var(--neon-orange); margin-bottom: 1rem; }
+        .upload-zone h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .upload-zone p { color: var(--text-secondary); }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 1rem; background: var(--dark-bg-tertiary); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px; color: var(--text-primary); font-size: 1rem;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--neon-orange); }
+        
+        .btn {
+            padding: 1rem 2rem; background: var(--neon-orange); color: var(--dark-bg); border: none;
+            font-weight: 700; border-radius: 5px; cursor: pointer; transition: all 0.3s; font-size: 1rem;
+        }
+        .btn:hover { background: var(--neon-orange-light); transform: translateY(-2px); }
+        .btn-secondary { background: var(--dark-bg-tertiary); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.2); }
+        .btn-secondary:hover { background: var(--dark-bg-secondary); }
+        
+        .file-list { margin-top: 2rem; }
+        .file-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--dark-bg-tertiary); border-radius: 8px; margin-bottom: 0.5rem; }
+        .file-item i { color: var(--neon-orange); margin-right: 1rem; }
+        .file-item .filename { flex: 1; }
+        .file-item .file-size { color: var(--text-secondary); font-size: 0.85rem; margin-right: 1rem; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .card { background: var(--dark-bg-secondary); border-radius: 15px; padding: 2rem; }
+        .card h3 { color: var(--neon-orange); margin-bottom: 1.5rem; }
+        
+        footer { padding: 3rem 2rem; background: var(--dark-bg-secondary); text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4rem; }
+        
+        @media (max-width: 768px) { .nav-links { display: none; } .grid-2 { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">REDEMPTION ROAD MG</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="staff.html" class="active">Staff Portal</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="page-header">
+            <h1>STAFF PORTAL</h1>
+            <p style="color: var(--text-secondary);">Manage content and publishing</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('music')"><i class="fas fa-music"></i> Music Upload</button>
+            <button class="tab" onclick="showTab('marketing')"><i class="fas fa-bullhorn"></i> Marketing</button>
+            <button class="tab" onclick="showTab('publishing')"><i class="fas fa-file-contract"></i> ASCAP Publishing</button>
+        </div>
+        
+        <!-- Music Upload Tab -->
+        <div id="music" class="tab-content active">
+            <div class="upload-zone" id="drop-zone">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload Music Files</h3>
+                <p>Drag & drop files here or click to browse</p>
+                <p style="font-size: 0.85rem; margin-top: 1rem; color: var(--text-muted);">Supported: MP3, WAV, FLAC, OGG</p>
+                <input type="file" id="file-input" multiple accept=".mp3,.wav,.flac,.ogg" style="display: none;">
+            </div>
+            <div class="file-list" id="file-list"></div>
+            <div style="margin-top: 2rem;">
+                <button class="btn" onclick="generateTracklist()">
+                    <i class="fas fa-sync"></i> Update Jukebox Playlist
+                </button>
+            </div>
+        </div>
+        
+        <!-- Marketing Tab -->
+        <div id="marketing" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <h3><i class="fas fa-bullhorn"></i> Campaign Manager</h3>
+                    <div class="form-group">
+                        <label>Campaign Name</label>
+                        <input type="text" id="campaign-name" placeholder="Q1 2024 Release Push">
+                    </div>
+                    <div class="form-group">
+                        <label>Artist</label>
+                        <select id="campaign-artist">
+                            <option value="">Select Artist</option>
+                            <option value="ray">Ray Flanary</option>
+                            <option value="paige">Paige Sproles</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Budget</label>
+                        <input type="text" id="campaign-budget" placeholder="$5,000">
+                    </div>
+                    <div class="form-group">
+                        <label>Platforms</label>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox"> Instagram
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox"> TikTok
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox"> YouTube
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox"> Spotify
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="saveCampaign()">Create Campaign</button>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-tasks"></i> Active Campaigns</h3>
+                    <div id="campaign-list">
+                        <div class="file-item">
+                            <div>
+                                <i class="fas fa-bullhorn" style="color: var(--neon-orange);"></i>
+                                <strong>Q1 2024 Release Push</strong>
+                            </div>
+                            <span style="color: var(--neon-orange);">Active</span>
+                        </div>
+                        <div class="file-item">
+                            <div>
+                                <i class="fas fa-bullhorn" style="color: var(--neon-orange);"></i>
+                                <strong>Artist Branding</strong>
+                            </div>
+                            <span style="color: var(--neon-orange);">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ASCAP Publishing Tab -->
+        <div id="publishing" class="tab-content">
+            <div class="card" style="margin-bottom: 2rem;">
+                <h3><i class="fas fa-file-contract"></i> Neon Church Publishing - ASCAP Submission</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    Submit songs to ASCAP for registration and royalty collection through Neon Church Publishing.
+                </p>
+                
+                <form id="ascap-form">
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Song Title *</label>
+                            <input type="text" id="song-title" required placeholder="Song Title">
+                        </div>
+                        <div class="form-group">
+                            <label>ISRC Code</label>
+                            <input type="text" id="isrc-code" placeholder="US-XXX-23-00001">
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Writer Name(s) *</label>
+                            <input type="text" id="writer-name" required placeholder="Primary Writer Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Publisher</label>
+                            <input type="text" id="publisher" value="Neon Church Publishing" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Writer Role</label>
+                            <select id="writer-role">
+                                <option value="composer">Composer</option>
+                                <option value="lyricist">Lyricist</option>
+                                <option value="both">Composer & Lyricist</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ownership %</label>
+                            <input type="number" id="ownership" placeholder="100" value="100">
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <select id="song-genre">
+                                <option value="country">Country</option>
+                                <option value="americana">Americana</option>
+                                <option value="folk">Folk</option>
+                                <option value="southern-rock">Southern Rock</option>
+                                <option value="pop">Pop</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Duration (mm:ss)</label>
+                            <input type="text" id="duration" placeholder="3:45">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Audio File (Master)</label>
+                        <div class="upload-zone" style="padding: 2rem;">
+                            <i class="fas fa-music"></i>
+                            <p>Click to upload master recording</p>
+                            <input type="file" id="master-file" accept=".mp3,.wav,.flac" style="display: none;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea id="notes" rows="3" placeholder="Additional information..."></textarea>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button type="submit" class="btn">
+                            <i class="fas fa-paper-plane"></i> Submit to ASCAP
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="saveDraft()">
+                            <i class="fas fa-save"></i> Save Draft
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="exportCSV()">
+                            <i class="fas fa-file-export"></i> Export CSV
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-history"></i> Submission History</h3>
+                <div id="submission-list">
+                    <div class="file-item">
+                        <div>
+                            <i class="fas fa-music" style="color: var(--neon-orange);"></i>
+                            <strong>When He Comes Again</strong>
+                        </div>
+                        <span style="color: #4CAF50;">Registered</span>
+                    </div>
+                    <div class="file-item">
+                        <div>
+                            <i class="fas fa-music" style="color: var(--neon-orange);"></i>
+                            <strong>Midnight Cowboy</strong>
+                        </div>
+                        <span style="color: #4CAF50;">Registered</span>
+                    </div>
+                    <div class="file-item">
+                        <div>
+                            <i class="fas fa-music" style="color: var(--neon-orange);"></i>
+                            <strong>These Old Cowboy Boots</strong>
+                        </div>
+                        <span style="color: var(--neon-orange);">Pending</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Redemption Road MG | Staff Portal</p>
+    </footer>
+    
+    <script>
+        let uploadedFiles = [];
+        
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.borderColor = 'var(--neon-orange)'; });
+        dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'rgba(255,159,28,0.3)'; });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            handleFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+        
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                if (file.size < 100 * 1024 * 1024) {
+                    uploadedFiles.push(file);
+                    addFileToList(file);
+                }
+            });
+        }
+        
+        function addFileToList(file) {
+            const list = document.getElementById('file-list');
+            const item = document.createElement('div');
+            item.className = 'file-item';
+            item.innerHTML = `
+                <i class="fas fa-music"></i>
+                <span class="filename">${file.name}</span>
+                <span class="file-size">${(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                <i class="fas fa-check" style="color: #4CAF50;"></i>
+            `;
+            list.appendChild(item);
+        }
+        
+        function generateTracklist() {
+            alert('Music files uploaded! To finalize, run "node generate-tracks.js" locally or contact your developer to process the uploads.');
+        }
+        
+        function saveCampaign() {
+            const name = document.getElementById('campaign-name').value;
+            const artist = document.getElementById('campaign-artist').value;
+            const budget = document.getElementById('campaign-budget').value;
+            if (name) {
+                alert('Campaign "' + name + '" created successfully!');
+                document.getElementById('campaign-name').value = '';
+            }
+        }
+        
+        document.getElementById('ascap-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('song-title').value;
+            alert('ASCAP submission prepared for "' + title + '"! In production, this would connect to the ASCAP API.');
+        });
+        
+        function saveDraft() {
+            const formData = {
+                title: document.getElementById('song-title').value,
+                writer: document.getElementById('writer-name').value,
+                publisher: 'Neon Church Publishing'
+            };
+            localStorage.setItem('ascap_draft', JSON.stringify(formData));
+            alert('Draft saved!');
+        }
+        
+        function exportCSV() {
+            const data = [
+                ['Title', 'Writer', 'Publisher', 'Role', 'Status'],
+                ['When He Comes Again', 'Ray Flanary', 'Neon Church Publishing', 'Composer', 'Registered'],
+                ['Midnight Cowboy', 'Ray Flanary', 'Neon Church Publishing', 'Composer', 'Registered']
+            ];
+            const csv = data.map(row => row.join(',')).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ascap_submissions.csv';
+            a.click();
+        }
+    </script>
+</body>
+</html>
