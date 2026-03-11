@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artists | Redemption Road MG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon-orange: #FF9F1C; --neon-orange-light: #FFB347; --dark-bg: #0a0a0a; --dark-bg-secondary: #141414; --dark-bg-tertiary: #1a1a1a; --text-primary: #ffffff; --text-secondary: #a0a0a0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text-primary); }
+        h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+        
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; background: rgba(10, 10, 10, 0.98); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--neon-orange); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--neon-orange); }
+        
+        main { padding: 120px 2rem 4rem; max-width: 1200px; margin: 0 auto; background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9), var(--dark-bg)), url('rrmgartistpics/artists.jpg') center/cover no-repeat; }
+        .page-header { text-align: center; margin-bottom: 4rem; }
+        .page-header h1 { font-size: clamp(3rem, 8vw, 6rem); color: var(--neon-orange); }
+        
+        .artists-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .artist-card { background: var(--dark-bg-secondary); border-radius: 15px; overflow: hidden; transition: all 0.3s; }
+        .artist-card:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        .artist-image { height: 300px; background: var(--dark-bg-tertiary); background-size: cover; background-position: center; }
+        .artist-info { padding: 2rem; text-align: center; }
+        .artist-name { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .artist-genre { color: var(--neon-orange); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: 1rem; }
+        .artist-bio { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .artist-socials { display: flex; justify-content: center; gap: 1rem; }
+        .artist-socials a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--neon-orange); display: flex; align-items: center; justify-content: center; color: var(--neon-orange); transition: all 0.3s; }
+        .artist-socials a:hover { background: var(--neon-orange); color: var(--dark-bg); }
+        
+        footer { padding: 3rem 2rem; background: var(--dark-bg-secondary); text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4rem; }
+        
+        @media (max-width: 768px) { .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">REDEMPTION ROAD MG</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="marketing.html">Marketing</a></li>
+                <li><a href="artists.html" class="active">Artists</a></li>
+                <li><a href="releases.html">Releases</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="page-header">
+            <h1>TALENT ROSTER</h1>
+        </div>
+        
+        <div class="artists-grid">
+            <article class="artist-card">
+                <div class="artist-image" style="background-image: url('rrmgartistpics/ray.png'); background-color: #1a1a1a;"></div>
+                <div class="artist-info">
+                    <h3 class="artist-name">Ray Flanary</h3>
+                    <p class="artist-genre">Country | Americana | Southern Rock</p>
+                    <p class="artist-bio">Raw, authentic storytelling from the heart of Texas. Songs about life, love, and the open road.</p>
+                    <div class="artist-socials">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-spotify"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="artist-card">
+                <div class="artist-image" style="background-image: url('rrmgartistpics/paiges.jpg'); background-color: #1a1a1a;"></div>
+                <div class="artist-info">
+                    <h3 class="artist-name">Paige Sproles</h3>
+                    <p class="artist-genre">Country | Folk | Acoustic</p>
+                    <p class="artist-bio">Soulful vocals and heartfelt lyrics. Bringing acoustic authenticity to modern country.</p>
+                    <div class="artist-socials">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-spotify"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Redemption Road MG | Redemption Road Records</p>
+    </footer>
+</body>
+</html>
