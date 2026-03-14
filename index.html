@@ -1343,21 +1343,26 @@
         let audio = new Audio();
         let shuffledIndices = [];
 
-        // DOM Elements
-        const octagonContainer = document.getElementById('octagon-container');
-        const centerTrackTitle = document.getElementById('center-track-title');
-        const centerTrackArtist = document.getElementById('center-track-artist');
-        const playBtn = document.getElementById('play-btn');
-        const pauseBtn = document.getElementById('pause-btn');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const shuffleBtn = document.getElementById('shuffle-btn');
-        const repeatBtn = document.getElementById('repeat-btn');
-        const playlistEl = document.getElementById('playlist');
-        const progressBar = document.getElementById('progress-bar');
-        const progressFill = document.getElementById('progress-fill');
-        const currentTimeEl = document.getElementById('current-time');
-        const totalDurationEl = document.getElementById('total-duration');
+        // DOM Elements - will be initialized on load
+        let octagonContainer, centerTrackTitle, centerTrackArtist, playBtn, pauseBtn, prevBtn, nextBtn, shuffleBtn, repeatBtn, playlistEl, progressBar, progressFill, currentTimeEl, totalDurationEl;
+
+        // Initialize DOM elements
+        function initDOMElements() {
+            octagonContainer = document.getElementById('octagon-container');
+            centerTrackTitle = document.getElementById('center-track-title');
+            centerTrackArtist = document.getElementById('center-track-artist');
+            playBtn = document.getElementById('play-btn');
+            pauseBtn = document.getElementById('pause-btn');
+            prevBtn = document.getElementById('prev-btn');
+            nextBtn = document.getElementById('next-btn');
+            shuffleBtn = document.getElementById('shuffle-btn');
+            repeatBtn = document.getElementById('repeat-btn');
+            playlistEl = document.getElementById('playlist');
+            progressBar = document.getElementById('progress-bar');
+            progressFill = document.getElementById('progress-fill');
+            currentTimeEl = document.getElementById('current-time');
+            totalDurationEl = document.getElementById('total-duration');
+        }
 
         // Load tracks from tracks.js
         async function loadTracks() {
@@ -1559,6 +1564,7 @@
 
         // Initialize on page load
         window.addEventListener('load', () => {
+            initDOMElements();
             loadTracks();
             console.log('3D Octagonal Jukebox ready');
         });
