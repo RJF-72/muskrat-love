@@ -3,7 +3,7 @@ const tracks = [
     {
         "title": "100 Reasons Why",
         "artist": "Redemption Road Artists",
-        "src": "music/100 Reasons Why.ogg",
+        "src": "music/100%20Reasons%20Why.ogg",
         "time": "0:00"
     },
     {
@@ -15,37 +15,37 @@ const tracks = [
     {
         "title": "Faded Photograph",
         "artist": "Redemption Road Artists",
-        "src": "music/Faded Photograph.ogg",
+        "src": "music/Faded%20Photograph.ogg",
         "time": "0:00"
     },
     {
         "title": "His Daughters Heart",
         "artist": "Redemption Road Artists",
-        "src": "music/His Daughters Heart.ogg",
+        "src": "music/His%20Daughters%20Heart.ogg",
         "time": "0:00"
     },
     {
         "title": "His Last Ride",
         "artist": "Redemption Road Artists",
-        "src": "music/His Last Ride.ogg",
+        "src": "music/His%20Last%20Ride.ogg",
         "time": "0:00"
     },
     {
         "title": "If Ya Ain't Got Jesus",
         "artist": "Redemption Road Artists",
-        "src": "music/If Ya Ain't Got Jesus.ogg",
+        "src": "music/If%20Ya%20Ain't%20Got%20Jesus.ogg",
         "time": "0:00"
     },
     {
         "title": "JukeBox Millionaire.mp3",
         "artist": "Redemption Road Artists",
-        "src": "music/JukeBox Millionaire.mp3 (Mastered with Thunder at 50pct).ogg",
+        "src": "music/JukeBox%20Millionaire.mp3%20(Mastered%20with%20Thunder%20at%2050pct).ogg",
         "time": "0:00"
     },
     {
         "title": "Red Dirt Town",
         "artist": "Redemption Road Artists",
-        "src": "music/Red Dirt Town.ogg",
+        "src": "music/Red%20Dirt%20Town.ogg",
         "time": "0:00"
     },
     {
@@ -57,43 +57,43 @@ const tracks = [
     {
         "title": "Roman Witness-2",
         "artist": "Redemption Road Artists",
-        "src": "music/Roman Witness-2.ogg",
+        "src": "music/Roman%20Witness-2.ogg",
         "time": "0:00"
     },
     {
         "title": "Sing It Back To Me",
         "artist": "Redemption Road Artists",
-        "src": "music/Sing It Back To Me.ogg",
+        "src": "music/Sing%20It%20Back%20To%20Me.ogg",
         "time": "0:00"
     },
     {
         "title": "The Last Dance We Danced To",
         "artist": "Redemption Road Artists",
-        "src": "music/The Last Dance We Danced To.ogg",
+        "src": "music/The%20Last%20Dance%20We%20Danced%20To.ogg",
         "time": "0:00"
     },
     {
         "title": "The Midnight  Cowboy",
         "artist": "Redemption Road Artists",
-        "src": "music/The Midnight  Cowboy.ogg",
+        "src": "music/The%20Midnight%20%20Cowboy.ogg",
         "time": "0:00"
     },
     {
         "title": "These Old Cowboy Boots",
         "artist": "Redemption Road Artists",
-        "src": "music/These Old Cowboy Boots (2).ogg",
+        "src": "music/These%20Old%20Cowboy%20Boots%20(2).ogg",
         "time": "0:00"
     },
     {
         "title": "This Just Happened",
         "artist": "Redemption Road Artists",
-        "src": "music/This Just Happened.ogg",
+        "src": "music/This%20Just%20Happened.ogg",
         "time": "0:00"
     },
     {
         "title": "When He Comes Again",
         "artist": "Redemption Road Artists",
-        "src": "music/When He Comes Again.ogg",
+        "src": "music/When%20He%20Comes%20Again.ogg",
         "time": "0:00"
     },
     {

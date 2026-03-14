@@ -47,7 +47,7 @@ function generateTracks() {
                 return {
                     title: title,
                     artist: 'Redemption Road Artists',
-                    src: `music/${file}`,
+                    src: `music/${encodeURIComponent(file)}`,
                     time: '0:00'
                 };
             });
