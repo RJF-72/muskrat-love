@@ -310,8 +310,8 @@
             inset: 0;
             background: 
                 linear-gradient(to bottom, rgba(10, 10, 10, 0.3), var(--dark-bg)),
-                url('rrmgartistpics/a-christian-hi-definition-pic-of-redemption-road.jpg') center/cover no-repeat;
-            filter: brightness(0.4);
+                url('rrmgartistpics/a-christian-hi-definition-pic-of-redemption-road.webp') center/cover no-repeat;
+            filter: brightness(0.6);
             transform: scale(1.1);
         }
         
@@ -382,42 +382,42 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .jukebox-section::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: 
+            background:
                 linear-gradient(to bottom, transparent, var(--dark-bg-secondary)),
-                url('rrmgartistpics/neonjuke.jpg') center/cover no-repeat;
-            filter: brightness(0.3);
-            opacity: 0.5;
+                url('rrmgartistpics/neonjuke.webp') center/cover no-repeat;
+            filter: brightness(0.5);
+            opacity: 0.7;
         }
-        
+
         .jukebox-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
             z-index: 10;
         }
-        
+
         .section-title {
             font-size: clamp(2rem, 5vw, 4rem);
             text-align: center;
             margin-bottom: 3rem;
             color: var(--neon-orange);
         }
-        
+
         .jukebox {
             background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 
+            box-shadow:
                 0 20px 60px rgba(0, 0, 0, 0.5),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 159, 28, 0.2);
         }
-        
+
         .jukebox-title {
             text-align: center;
             font-size: 2rem;
@@ -425,79 +425,236 @@
             color: var(--neon-orange);
             text-shadow: 0 0 20px rgba(255, 159, 28, 0.5);
         }
-        
-        .record-display {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+
+        /* 3D Octagonal Player */
+        .octagon-player {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 2rem;
+            perspective: 1000px;
         }
-        
-        .vinyl {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: 
-                radial-gradient(circle at center, #111 20%, #222 20%, #222 30%, #111 30%, #111 35%, #222 35%, #222 45%, #111 45%, #111 50%, #222 50%, #222 60%, #111 60%, #111 65%, #222 65%, #222 75%, #111 75%),
-                radial-gradient(circle at center, var(--neon-orange) 0%, var(--neon-orange) 15%, #111 15%, #111 100%);
-            animation: spin 3s linear infinite;
-            box-shadow: 0 0 30px rgba(255, 159, 28, 0.3);
+
+        .octagon-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: octagonRotate 20s linear infinite;
         }
-        
-        .vinyl.paused {
+
+        .octagon-container.paused {
             animation-play-state: paused;
         }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+
+        @keyframes octagonRotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
         }
-        
-        .track-info {
-            text-align: center;
+
+        .octagon-face {
+            position: absolute;
+            width: 100px;
+            height: 140px;
+            left: 50%;
+            top: 50%;
+            margin-left: -50px;
+            margin-top: -70px;
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            border: 2px solid var(--neon-orange);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            box-shadow:
+                0 0 20px rgba(255, 159, 28, 0.3),
+                inset 0 0 20px rgba(255, 159, 28, 0.1);
+            backface-visibility: visible;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
-        .track-title {
-            font-size: 1.5rem;
+
+        .octagon-face:hover {
+            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+            box-shadow:
+                0 0 30px rgba(255, 159, 28, 0.5),
+                inset 0 0 30px rgba(255, 159, 28, 0.2);
+            transform: scale(1.05);
+        }
+
+        .octagon-face.active {
+            background: linear-gradient(145deg, #4a4a4a, #3a3a3a);
+            border-color: #fff;
+            box-shadow:
+                0 0 40px rgba(255, 159, 28, 0.6),
+                inset 0 0 40px rgba(255, 159, 28, 0.3);
+        }
+
+        .octagon-face img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
             margin-bottom: 0.5rem;
+            border: 2px solid var(--neon-orange);
         }
-        
-        .track-artist {
+
+        .octagon-face .face-label {
+            font-size: 0.6rem;
             color: var(--text-secondary);
-            font-size: 1rem;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
         }
-        
-        .jukebox-controls {
+
+        /* Position the 8 faces of the octagon */
+        .octagon-face:nth-child(1) { transform: rotateY(0deg) translateZ(120px); }
+        .octagon-face:nth-child(2) { transform: rotateY(45deg) translateZ(120px); }
+        .octagon-face:nth-child(3) { transform: rotateY(90deg) translateZ(120px); }
+        .octagon-face:nth-child(4) { transform: rotateY(135deg) translateZ(120px); }
+        .octagon-face:nth-child(5) { transform: rotateY(180deg) translateZ(120px); }
+        .octagon-face:nth-child(6) { transform: rotateY(225deg) translateZ(120px); }
+        .octagon-face:nth-child(7) { transform: rotateY(270deg) translateZ(120px); }
+        .octagon-face:nth-child(8) { transform: rotateY(315deg) translateZ(120px); }
+
+        /* Center display for current track */
+        .center-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, #2a2a2a, #1a1a1a);
+            border: 3px solid var(--neon-orange);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 0 30px rgba(255, 159, 28, 0.4),
+                inset 0 0 30px rgba(255, 159, 28, 0.2);
+            z-index: 10;
+        }
+
+        .center-display .now-playing {
+            font-size: 0.55rem;
+            color: var(--neon-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.3rem;
+        }
+
+        .center-display .track-title {
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 90%;
+        }
+
+        .center-display .track-artist {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 90%;
+        }
+
+        /* Transport Controls */
+        .transport-controls {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 1rem;
             margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 159, 28, 0.2);
         }
-        
-        .control-btn {
-            width: 60px;
-            height: 60px;
+
+        .transport-btn {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: 2px solid var(--neon-orange);
             background: transparent;
             color: var(--neon-orange);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        .control-btn:hover, .control-btn.active {
+
+        .transport-btn:hover {
             background: var(--neon-orange);
             color: var(--dark-bg);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 159, 28, 0.4);
         }
-        
+
+        .transport-btn.active {
+            background: var(--neon-orange);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(255, 159, 28, 0.5);
+        }
+
+        .transport-btn.play-btn {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-orange-light));
+            width: 0%;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px rgba(255, 159, 28, 0.5);
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Playlist */
         .playlist {
             margin-top: 2rem;
             max-height: 200px;
             overflow-y: auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 0.5rem;
         }
-        
+
         .playlist-item {
             padding: 0.8rem 1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -506,10 +663,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-radius: 5px;
         }
-        
-        .playlist-item:hover, .playlist-item.active {
+
+        .playlist-item:last-child {
+            border-bottom: none;
+        }
+
+        .playlist-item:hover {
             background: rgba(255, 159, 28, 0.1);
+        }
+
+        .playlist-item.active {
+            background: rgba(255, 159, 28, 0.2);
             border-left: 3px solid var(--neon-orange);
         }
         
@@ -705,7 +871,7 @@
         .artist-image {
             height: 250px;
             background-size: cover;
-            background-position: center;
+            background-position: center 25%;
             background-color: var(--dark-bg-tertiary);
         }
         
@@ -796,18 +962,59 @@
             .nav-links {
                 display: none;
             }
-            
+
             .about-container {
                 grid-template-columns: 1fr;
             }
-            
+
             .hero h1 {
                 font-size: 3rem;
             }
-            
-            .vinyl {
-                width: 150px;
-                height: 150px;
+
+            .octagon-player {
+                width: 220px;
+                height: 220px;
+            }
+
+            .octagon-face {
+                width: 80px;
+                height: 110px;
+                margin-left: -40px;
+                margin-top: -55px;
+            }
+
+            .octagon-face:nth-child(1) { transform: rotateY(0deg) translateZ(90px); }
+            .octagon-face:nth-child(2) { transform: rotateY(45deg) translateZ(90px); }
+            .octagon-face:nth-child(3) { transform: rotateY(90deg) translateZ(90px); }
+            .octagon-face:nth-child(4) { transform: rotateY(135deg) translateZ(90px); }
+            .octagon-face:nth-child(5) { transform: rotateY(180deg) translateZ(90px); }
+            .octagon-face:nth-child(6) { transform: rotateY(225deg) translateZ(90px); }
+            .octagon-face:nth-child(7) { transform: rotateY(270deg) translateZ(90px); }
+            .octagon-face:nth-child(8) { transform: rotateY(315deg) translateZ(90px); }
+
+            .center-display {
+                width: 110px;
+                height: 110px;
+            }
+
+            .center-display .track-title {
+                font-size: 0.65rem;
+            }
+
+            .center-display .track-artist {
+                font-size: 0.55rem;
+            }
+
+            .transport-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .transport-btn.play-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
             }
         }
         
@@ -894,40 +1101,55 @@
             <h2 class="section-title fade-in">THE JUKEBOX</h2>
             <div class="jukebox fade-in">
                 <h3 class="jukebox-title">♪ Now Playing ♪</h3>
-                <div class="record-display">
-                    <div class="vinyl" id="vinyl" role="img" aria-label="Vinyl record spinning"></div>
-                    <div class="track-info">
-                        <div class="track-title" id="track-title">Midnight Cowboy</div>
-                        <div class="track-artist" id="track-artist">Redemption Road Artists</div>
+                
+                <!-- 3D Octagonal Player -->
+                <div class="octagon-player">
+                    <div class="octagon-container" id="octagon-container">
+                        <!-- 8 faces for 8 songs (will be populated dynamically) -->
+                    </div>
+                    <div class="center-display">
+                        <span class="now-playing">Now Playing</span>
+                        <span class="track-title" id="center-track-title">Loading...</span>
+                        <span class="track-artist" id="center-track-artist">-</span>
                     </div>
                 </div>
-                <div class="jukebox-controls">
-                    <button class="control-btn active" id="play-btn" aria-label="Play music"><i class="fas fa-play" aria-hidden="true"></i></button>
-                    <button class="control-btn" id="pause-btn" aria-label="Pause music"><i class="fas fa-pause" aria-hidden="true"></i></button>
-                    <button class="control-btn" id="prev-btn" aria-label="Previous track"><i class="fas fa-step-backward" aria-hidden="true"></i></button>
-                    <button class="control-btn" id="next-btn" aria-label="Next track"><i class="fas fa-step-forward" aria-hidden="true"></i></button>
+                
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="current-time">0:00</span>
+                        <span id="total-duration">0:00</span>
+                    </div>
                 </div>
+                
+                <!-- Transport Controls -->
+                <div class="transport-controls">
+                    <button class="transport-btn" id="shuffle-btn" aria-label="Shuffle" title="Shuffle">
+                        <i class="fas fa-random" aria-hidden="true"></i>
+                    </button>
+                    <button class="transport-btn" id="prev-btn" aria-label="Previous track">
+                        <i class="fas fa-step-backward" aria-hidden="true"></i>
+                    </button>
+                    <button class="transport-btn play-btn active" id="play-btn" aria-label="Play music">
+                        <i class="fas fa-play" aria-hidden="true"></i>
+                    </button>
+                    <button class="transport-btn" id="pause-btn" aria-label="Pause music">
+                        <i class="fas fa-pause" aria-hidden="true"></i>
+                    </button>
+                    <button class="transport-btn" id="next-btn" aria-label="Next track">
+                        <i class="fas fa-step-forward" aria-hidden="true"></i>
+                    </button>
+                    <button class="transport-btn" id="repeat-btn" aria-label="Repeat" title="Repeat">
+                        <i class="fas fa-redo" aria-hidden="true"></i>
+                    </button>
+                </div>
+                
+                <!-- Playlist -->
                 <div class="playlist" id="playlist">
-                    <div class="playlist-item active" data-track="1">
-                        <span>Midnight Cowboy</span>
-                        <span>3:45</span>
-                    </div>
-                    <div class="playlist-item" data-track="2">
-                        <span>These Old Cowboy Boots</span>
-                        <span>3:50</span>
-                    </div>
-                    <div class="playlist-item" data-track="3">
-                        <span>If Ya Ain't Got Jesus</span>
-                        <span>3:15</span>
-                    </div>
-                    <div class="playlist-item" data-track="4">
-                        <span>Jukebox Millionaire</span>
-                        <span>4:05</span>
-                    </div>
-                    <div class="playlist-item" data-track="5">
-                        <span>When He Comes Again</span>
-                        <span>3:22</span>
-                    </div>
+                    <!-- Playlist items populated dynamically -->
                 </div>
             </div>
         </div>
@@ -938,14 +1160,14 @@
         <h2 class="section-title fade-in">OUR DIVISIONS</h2>
         <div class="divisions-grid stagger-children">
             <article class="division-card">
-                <div class="division-image" style="background-image: url('rrmgartistpics/pearlygates.jpg');"></div>
+                <div class="division-image" style="background-image: url('rrmgartistpics/pearlygates.webp');"></div>
                 <div class="division-content">
                     <h3>Redemption Road Records</h3>
                     <p>Our flagship record label dedicated to authentic, transformative music that speaks to the soul.</p>
                 </div>
             </article>
             <article class="division-card">
-                <div class="division-image" style="background-image: url('rrmgartistpics/Titan7ProStudio.jpg');">
+                <div class="division-image" style="background-image: url('rrmgartistpics/Titan7ProStudio.webp');">
                     <div class="coming-soon-badge">
                         <span class="badge-label">COMING SOON</span>
                         <span class="badge-title">TITAN 7 PRO</span>
@@ -959,14 +1181,14 @@
                 </div>
             </article>
             <article class="division-card">
-                <div class="division-image" style="background-image: url('rrmgartistpics/neonpub.jpg');"></div>
+                <div class="division-image" style="background-image: url('rrmgartistpics/neonpub.webp');"></div>
                 <div class="division-content">
                     <h3>Neon Church Publishing</h3>
                     <p>Protecting and promoting artistic creation with passion and expertise.</p>
                 </div>
             </article>
             <article class="division-card">
-                <div class="division-image" style="background-image: url('rrmgartistpics/HeavensDoor.jpg');"></div>
+                <div class="division-image" style="background-image: url('rrmgartistpics/HeavensDoor.webp');"></div>
                 <div class="division-content">
                     <h3>Titan Marketing</h3>
                     <p>Strategic marketing that amplifies your voice to the world.</p>
@@ -1016,7 +1238,7 @@
         <h2 class="section-title fade-in">TALENT ROSTER</h2>
         <div class="roster-grid stagger-children">
             <article class="artist-card" itemscope itemtype="https://schema.org/MusicGroup">
-                <div class="artist-image" style="background-image: url('rrmgartistpics/ray.png'); background-color: #1a1a1a;" role="img" aria-label="Ray Flanary photo"></div>
+                <div class="artist-image" style="background-image: url('rrmgartistpics/ray.webp'); background-color: #1a1a1a;" role="img" aria-label="Ray Flanary photo"></div>
                 <div class="artist-info">
                     <h3 class="artist-name" itemprop="name">Ray Flanary</h3>
                     <p class="artist-genre">Country | Americana | Southern Rock</p>
@@ -1024,7 +1246,7 @@
                 </div>
             </article>
             <article class="artist-card" itemscope itemtype="https://schema.org/MusicGroup">
-                <div class="artist-image" style="background-image: url('rrmgartistpics/paiges.jpg'); background-color: #1a1a1a;" role="img" aria-label="Paige Sproles photo"></div>
+                <div class="artist-image" style="background-image: url('rrmgartistpics/paige.webp'); background-color: #1a1a1a;" role="img" aria-label="Paige Sproles photo"></div>
                 <div class="artist-info">
                     <h3 class="artist-name" itemprop="name">Paige Sproles</h3>
                     <p class="artist-genre">Country | Folk | Acoustic</p>
@@ -1111,22 +1333,33 @@
         document.querySelectorAll('.fade-in, .stagger-children').forEach(el => {
             observer.observe(el);
         });
-        
-        // Jukebox functionality - tracks loaded dynamically from tracks.js
+
+        // 3D Octagonal Jukebox - tracks loaded dynamically from tracks.js
         let tracks = [];
         let currentTrack = 0;
         let isPlaying = true;
+        let isShuffle = false;
+        let isRepeat = false;
         let audio = new Audio();
-        
-        const vinyl = document.getElementById('vinyl');
-        const trackTitle = document.getElementById('track-title');
-        const trackArtist = document.getElementById('track-artist');
+        let shuffledIndices = [];
+
+        // DOM Elements
+        const octagonContainer = document.getElementById('octagon-container');
+        const centerTrackTitle = document.getElementById('center-track-title');
+        const centerTrackArtist = document.getElementById('center-track-artist');
         const playBtn = document.getElementById('play-btn');
         const pauseBtn = document.getElementById('pause-btn');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
+        const shuffleBtn = document.getElementById('shuffle-btn');
+        const repeatBtn = document.getElementById('repeat-btn');
         const playlistEl = document.getElementById('playlist');
-        
+        const progressBar = document.getElementById('progress-bar');
+        const progressFill = document.getElementById('progress-fill');
+        const currentTimeEl = document.getElementById('current-time');
+        const totalDurationEl = document.getElementById('total-duration');
+
+        // Load tracks from tracks.js
         async function loadTracks() {
             try {
                 const response = await fetch('tracks.js');
@@ -1135,16 +1368,45 @@
                 script.textContent = jsCode;
                 document.head.appendChild(script);
                 tracks = window.tracks || [];
-                buildPlaylist();
                 if (tracks.length > 0) {
+                    buildOctagon();
+                    buildPlaylist();
                     updateTrack();
-                    audio.play().catch(() => {});
+                    updateTotalDuration();
+                    // Auto-play after a short delay
+                    setTimeout(() => {
+                        audio.play().catch(() => {
+                            console.log('Autoplay blocked - user interaction needed');
+                        });
+                    }, 500);
                 }
             } catch (e) {
                 console.log('Could not load tracks:', e);
             }
         }
-        
+
+        // Build the 8 faces of the octagon
+        function buildOctagon() {
+            const displayCount = Math.min(8, tracks.length);
+            octagonContainer.innerHTML = tracks.slice(0, displayCount).map((track, index) => `
+                <div class="octagon-face" data-index="${index}" title="${track.title}">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(145deg, var(--neon-orange), #cc7a00); display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem; border: 2px solid var(--neon-orange);">
+                        <i class="fas fa-music" style="color: #0a0a0a; font-size: 1.2rem;"></i>
+                    </div>
+                    <span class="face-label">${track.title}</span>
+                </div>
+            `).join('');
+
+            // Add click handlers to octagon faces
+            document.querySelectorAll('.octagon-face').forEach(face => {
+                face.addEventListener('click', () => {
+                    currentTrack = parseInt(face.dataset.index);
+                    updateTrack();
+                });
+            });
+        }
+
+        // Build the playlist
         function buildPlaylist() {
             playlistEl.innerHTML = tracks.map((track, index) => `
                 <div class="playlist-item ${index === 0 ? 'active' : ''}" data-index="${index}">
@@ -1152,7 +1414,7 @@
                     <span>${track.time}</span>
                 </div>
             `).join('');
-            
+
             document.querySelectorAll('.playlist-item').forEach(item => {
                 item.addEventListener('click', () => {
                     currentTrack = parseInt(item.dataset.index);
@@ -1160,70 +1422,147 @@
                 });
             });
         }
-        
+
+        // Update the current track display and audio
         function updateTrack() {
             if (tracks.length === 0) return;
-            trackTitle.textContent = tracks[currentTrack].title;
-            trackArtist.textContent = tracks[currentTrack].artist;
-            audio.src = tracks[currentTrack].src;
-            audio.play().catch(() => {});
             
+            const track = tracks[currentTrack];
+            centerTrackTitle.textContent = track.title;
+            centerTrackArtist.textContent = track.artist;
+            audio.src = track.src;
+            
+            // Update octagon faces
+            document.querySelectorAll('.octagon-face').forEach(face => {
+                const faceIndex = parseInt(face.dataset.index);
+                face.classList.toggle('active', faceIndex === currentTrack);
+            });
+            
+            // Update playlist
             document.querySelectorAll('.playlist-item').forEach((item, index) => {
-                item.classList.toggle('active', index === currentTrack););
-        } currentTrack);
-           
-        
-        function togglePlay() {
-            isPlaying = !isPlaying;
-            vinyl.classList.toggle('paused', !isPlaying);
-            playBtn.classList.toggle('active', isPlaying);
-            pauseBtn.classList.toggle('active', !isPlaying);
+                item.classList.toggle('active', index === currentTrack);
+            });
             
             if (isPlaying) {
-                audio.play().catch(e => console.log('Autoplay blocked'));
+                audio.play().catch(e => console.log('Playback error:', e));
+            }
+        }
+
+        // Update total duration display
+        function updateTotalDuration() {
+            if (tracks.length === 0) return;
+            audio.addEventListener('loadedmetadata', () => {
+                totalDurationEl.textContent = formatTime(audio.duration);
+            }, { once: true });
+        }
+
+        // Format time in MM:SS
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            if (audio.duration) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = `${percent}%`;
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+            }
+        }
+
+        // Seek to position
+        function seek(e) {
+            const rect = progressBar.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = percent * audio.duration;
+        }
+
+        // Toggle play/pause
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            octagonContainer.classList.toggle('paused', !isPlaying);
+            playBtn.classList.toggle('active', isPlaying);
+            pauseBtn.classList.toggle('active', !isPlaying);
+
+            if (isPlaying) {
+                audio.play().catch(e => console.log('Playback error:', e));
             } else {
                 audio.pause();
             }
         }
-        
+
+        // Next track
         function nextTrack() {
-            currentTrack = (currentTrack + 1) % tracks.length;
+            if (tracks.length === 0) return;
+            
+            if (isShuffle) {
+                if (shuffledIndices.length === 0) {
+                    shuffledIndices = tracks.map((_, i) => i);
+                    shuffledIndices = shuffledIndices.filter(i => i !== currentTrack);
+                }
+                const randomIndex = Math.floor(Math.random() * shuffledIndices.length);
+                currentTrack = shuffledIndices[randomIndex];
+                shuffledIndices.splice(randomIndex, 1);
+            } else {
+                currentTrack = (currentTrack + 1) % tracks.length;
+            }
             updateTrack();
         }
-        
+
+        // Previous track
         function prevTrack() {
+            if (tracks.length === 0) return;
+            // If more than 3 seconds in, restart current track
+            if (audio.currentTime > 3) {
+                audio.currentTime = 0;
+                return;
+            }
             currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
             updateTrack();
         }
-        
-        // Auto-play on load (may need user interaction)
-        window.addEventListener('load', () => {
-            audio.play().catch(e => {
-                console.log('Autoplay blocked - click to play');
-            });
-        });
-        
-        // When track ends, play next
-        audio.addEventListener('ended', nextTrack);
-        
+
+        // Toggle shuffle
+        function toggleShuffle() {
+            isShuffle = !isShuffle;
+            shuffleBtn.classList.toggle('active', isShuffle);
+            shuffledIndices = [];
+        }
+
+        // Toggle repeat
+        function toggleRepeat() {
+            isRepeat = !isRepeat;
+            repeatBtn.classList.toggle('active', isRepeat);
+            audio.loop = isRepeat;
+        }
+
+        // Event listeners
         playBtn.addEventListener('click', togglePlay);
         pauseBtn.addEventListener('click', togglePlay);
         nextBtn.addEventListener('click', nextTrack);
         prevBtn.addEventListener('click', prevTrack);
-        
-        playlistItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                currentTrack = index;
-                updateTrack();
-            });
+        shuffleBtn.addEventListener('click', toggleShuffle);
+        repeatBtn.addEventListener('click', toggleRepeat);
+        progressBar.addEventListener('click', seek);
+
+        // Update progress on timeupdate
+        audio.addEventListener('timeupdate', updateProgress);
+
+        // When track ends
+        audio.addEventListener('ended', () => {
+            if (!isRepeat) {
+                nextTrack();
+            }
         });
-        
-        // Auto-play on page load
+
+        // Initialize on page load
         window.addEventListener('load', () => {
-            // Simulate autoplay
-            console.log('Jukebox ready - auto-play enabled');
+            loadTracks();
+            console.log('3D Octagonal Jukebox ready');
         });
-        
+
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {

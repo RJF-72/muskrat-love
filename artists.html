@@ -19,14 +19,14 @@
         .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--neon-orange); }
         
-        main { padding: 120px 2rem 4rem; max-width: 1200px; margin: 0 auto; background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9), var(--dark-bg)), url('rrmgartistpics/artists.jpg') center/cover no-repeat; }
+        main { padding: 120px 2rem 4rem; max-width: 1200px; margin: 0 auto; background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), var(--dark-bg)), url('rrmgartistpics/artists.webp') center/cover no-repeat; }
         .page-header { text-align: center; margin-bottom: 4rem; }
         .page-header h1 { font-size: clamp(3rem, 8vw, 6rem); color: var(--neon-orange); }
         
         .artists-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         .artist-card { background: var(--dark-bg-secondary); border-radius: 15px; overflow: hidden; transition: all 0.3s; }
         .artist-card:hover { transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
-        .artist-image { height: 300px; background: var(--dark-bg-tertiary); background-size: cover; background-position: center; }
+        .artist-image { height: 300px; background: var(--dark-bg-tertiary); background-size: cover; background-position: center 25%; }
         .artist-info { padding: 2rem; text-align: center; }
         .artist-name { font-size: 1.8rem; margin-bottom: 0.5rem; }
         .artist-genre { color: var(--neon-orange); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: 1rem; }
@@ -61,7 +61,7 @@
         
         <div class="artists-grid">
             <article class="artist-card">
-                <div class="artist-image" style="background-image: url('rrmgartistpics/ray.png'); background-color: #1a1a1a;"></div>
+                <div class="artist-image" style="background-image: url('rrmgartistpics/ray.webp'); background-color: #1a1a1a;"></div>
                 <div class="artist-info">
                     <h3 class="artist-name">Ray Flanary</h3>
                     <p class="artist-genre">Country | Americana | Southern Rock</p>
@@ -75,7 +75,7 @@
             </article>
             
             <article class="artist-card">
-                <div class="artist-image" style="background-image: url('rrmgartistpics/paiges.jpg'); background-color: #1a1a1a;"></div>
+                <div class="artist-image" style="background-image: url('rrmgartistpics/paige.webp'); background-color: #1a1a1a; background-position: center 10%;"></div>
                 <div class="artist-info">
                     <h3 class="artist-name">Paige Sproles</h3>
                     <p class="artist-genre">Country | Folk | Acoustic</p>

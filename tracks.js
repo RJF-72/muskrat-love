@@ -3,103 +3,103 @@ const tracks = [
     {
         "title": "100 Reasons Why",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/100 Reasons Why.flac",
+        "src": "music/100_Reasons_Why.opus",
         "time": "0:00"
     },
     {
         "title": "DustyBootsandFadedJeans",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/DustyBootsandFadedJeans.mp3",
+        "src": "music/DustyBootsandFadedJeans.opus",
         "time": "0:00"
     },
     {
         "title": "Faded Photograph",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/Faded Photograph.mp3",
+        "src": "music/Faded_Photograph.opus",
         "time": "0:00"
     },
     {
         "title": "His Daughters Heart",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/His Daughters Heart.mp3",
+        "src": "music/His_Daughters_Heart.opus",
         "time": "0:00"
     },
     {
         "title": "His Last Ride",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/His Last Ride.mp3",
+        "src": "music/His_Last_Ride.opus",
         "time": "0:00"
     },
     {
         "title": "If Ya Ain't Got Jesus",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/If Ya Ain't Got Jesus.wav",
+        "src": "music/If_Ya_Aint_Got_Jesus.opus",
         "time": "0:00"
     },
     {
         "title": "JukeBox Millionaire.mp3",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/JukeBox Millionaire.mp3 (Mastered with Thunder at 50pct).mp3",
+        "src": "music/JukeBox_Millionaire.opus",
         "time": "0:00"
     },
     {
         "title": "Red Dirt Town",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/Red Dirt Town.flac",
+        "src": "music/Red_Dirt_Town.opus",
         "time": "0:00"
     },
     {
         "title": "Rollin'",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/Rollin'.wav",
+        "src": "music/Rollin.opus",
         "time": "0:00"
     },
     {
         "title": "Roman Witness-2",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/Roman Witness-2.mp3",
+        "src": "music/Roman_Witness-2.opus",
         "time": "0:00"
     },
     {
         "title": "Sing It Back To Me",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/Sing It Back To Me.mp3",
+        "src": "music/Sing_It_Back_To_Me.opus",
         "time": "0:00"
     },
     {
         "title": "The Last Dance We Danced To",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/The Last Dance We Danced To.mp3",
+        "src": "music/The_Last_Dance_We_Danced_To.opus",
         "time": "0:00"
     },
     {
         "title": "The Midnight  Cowboy",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/The Midnight  Cowboy.mp3",
+        "src": "music/The_Midnight_Cowboy.opus",
         "time": "0:00"
     },
     {
         "title": "These Old Cowboy Boots",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/These Old Cowboy Boots (2).flac",
+        "src": "music/These_Old_Cowboy_Boots_2.opus",
         "time": "0:00"
     },
     {
         "title": "This Just Happened",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/This Just Happened.flac",
+        "src": "music/This_Just_Happened.opus",
         "time": "0:00"
     },
     {
         "title": "When He Comes Again",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/When He Comes Again.mp3",
+        "src": "music/When_He_Comes_Again.opus",
         "time": "0:00"
     },
     {
         "title": "WhenIGoHome",
         "artist": "Redemption Road Artists",
-        "src": "rrmgmusic/WhenIGoHome.mp3",
+        "src": "music/WhenIGoHome.opus",
         "time": "0:00"
     }
 ];

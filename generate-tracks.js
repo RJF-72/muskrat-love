@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const musicDir = path.join(__dirname, 'rrmgmusic');
+const musicDir = path.join(__dirname, 'music');
 const outputFile = path.join(__dirname, 'tracks.js');
 
 const supportedExtensions = ['.mp3', '.wav', '.flac', '.ogg', '.m4a', '.aac'];
@@ -47,7 +47,7 @@ function generateTracks() {
                 return {
                     title: title,
                     artist: 'Redemption Road Artists',
-                    src: `rrmgmusic/${file}`,
+                    src: `music/${file}`,
                     time: '0:00'
                 };
             });
