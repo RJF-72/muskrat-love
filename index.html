@@ -1367,12 +1367,19 @@
         // Load tracks from tracks.js
         async function loadTracks() {
             try {
+                console.log('Loading tracks from tracks.js...');
                 const response = await fetch('tracks.js');
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch tracks.js: ' + response.status);
+                }
                 const jsCode = await response.text();
+                console.log('Tracks.js loaded, length:', jsCode.length);
                 const script = document.createElement('script');
                 script.textContent = jsCode;
                 document.head.appendChild(script);
                 tracks = window.tracks || [];
+                console.log('Tracks loaded:', tracks.length);
                 if (tracks.length > 0) {
                     buildOctagon();
                     buildPlaylist();
@@ -1380,13 +1387,17 @@
                     updateTotalDuration();
                     // Auto-play after a short delay
                     setTimeout(() => {
-                        audio.play().catch(() => {
-                            console.log('Autoplay blocked - user interaction needed');
+                        audio.play().catch((e) => {
+                            console.log('Autoplay blocked - user interaction needed', e);
                         });
                     }, 500);
+                } else {
+                    console.error('No tracks found in tracks.js');
                 }
             } catch (e) {
-                console.log('Could not load tracks:', e);
+                console.error('Could not load tracks:', e);
+                centerTrackTitle.textContent = 'Error loading tracks';
+                centerTrackArtist.textContent = e.message;
             }
         }
 
