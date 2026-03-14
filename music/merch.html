@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace & Grit Mercantile | Redemption Road MG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon-orange: #FF9F1C; --neon-orange-light: #FFB347; --dark-bg: #0a0a0a; --dark-bg-secondary: #141414; --dark-bg-tertiary: #1a1a1a; --text-primary: #ffffff; --text-secondary: #a0a0a0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text-primary); }
+        h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+        
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; background: rgba(10, 10, 10, 0.98); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--neon-orange); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--neon-orange); }
+        
+        .cart-icon { position: relative; cursor: pointer; }
+        .cart-icon .cart-count { position: absolute; top: -8px; right: -8px; background: var(--neon-orange); color: var(--dark-bg); font-size: 0.7rem; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+        
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: 
+                linear-gradient(to bottom, rgba(10, 10, 10, 0.8), var(--dark-bg)),
+                url('rrmgartistpics/themerc.png') center/cover no-repeat;
+        }
+        
+        .hero-content { position: relative; z-index: 10; text-align: center; padding: 2rem; }
+        .hero-content h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--neon-orange);
+        }
+        .hero-content .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        
+        .coming-soon-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+        
+        .coming-soon-box {
+            text-align: center;
+            padding: 3rem;
+            border: 2px solid var(--neon-orange);
+            border-radius: 20px;
+            background: rgba(20, 20, 20, 0.95);
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 159, 28, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 159, 28, 0.6); }
+        }
+        
+        .coming-soon-box .badge-label {
+            font-size: 1.2rem;
+            color: var(--neon-orange);
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            animation: blink 1s ease-in-out infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .coming-soon-box h2 {
+            font-size: 3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .coming-soon-box p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin: 1rem 0 2rem;
+        }
+        
+        .email-signup {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .email-signup input {
+            flex: 1;
+            padding: 1rem;
+            background: var(--dark-bg-tertiary);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        
+        .email-signup button {
+            padding: 1rem 2rem;
+            background: var(--neon-orange);
+            color: var(--dark-bg);
+            border: none;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .email-signup button:hover {
+            background: var(--neon-orange-light);
+            transform: translateY(-2px);
+        }
+        
+        .categories { display: flex; justify-content: center; gap: 1rem; padding: 2rem; flex-wrap: wrap; }
+        .category-btn { padding: 0.8rem 1.5rem; background: var(--dark-bg-secondary); border: 1px solid rgba(255,255,255,0.1); border-radius: 25px; color: var(--text-secondary); cursor: pointer; transition: all 0.3s; }
+        .category-btn:hover, .category-btn.active { background: var(--neon-orange); color: var(--dark-bg); border-color: var(--neon-orange); }
+        
+        main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        
+        .product-card { background: var(--dark-bg-secondary); border-radius: 15px; overflow: hidden; transition: all 0.3s; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        
+        .product-image { height: 300px; background: var(--dark-bg-tertiary); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .product-image i { font-size: 5rem; color: var(--neon-orange); opacity: 0.3; }
+        .product-badge { position: absolute; top: 10px; left: 10px; padding: 0.3rem 0.8rem; background: var(--neon-orange); color: var(--dark-bg); font-size: 0.75rem; font-weight: 700; border-radius: 3px; }
+        
+        .product-info { padding: 1.5rem; }
+        .product-title { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .product-price { font-size: 1.3rem; color: var(--neon-orange); font-weight: 700; margin-bottom: 1rem; }
+        
+        .product-options { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .size-btn { padding: 0.4rem 0.8rem; background: var(--dark-bg-tertiary); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; color: var(--text-secondary); font-size: 0.8rem; cursor: pointer; transition: all 0.3s; }
+        .size-btn:hover, .size-btn.active { border-color: var(--neon-orange); color: var(--neon-orange); }
+        
+        .add-to-cart { width: 100%; padding: 1rem; background: var(--neon-orange); color: var(--dark-bg); border: none; font-weight: 700; font-size: 1rem; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+        .add-to-cart:hover { background: var(--neon-orange-light); }
+        
+        .cart-sidebar {
+            position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: var(--dark-bg-secondary);
+            z-index: 2000; transition: right 0.3s; padding: 2rem; overflow-y: auto; box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+        }
+        .cart-sidebar.open { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .close-cart { background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+        
+        .cart-items { margin-bottom: 2rem; }
+        .cart-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .cart-item-image { width: 80px; height: 80px; background: var(--dark-bg-tertiary); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .cart-item-image i { color: var(--neon-orange); opacity: 0.5; }
+        .cart-item-details { flex: 1; }
+        .cart-item-title { font-size: 1rem; margin-bottom: 0.3rem; }
+        .cart-item-price { color: var(--neon-orange); font-weight: 600; }
+        .cart-item-qty { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+        .qty-btn { width: 25px; height: 25px; background: var(--dark-bg-tertiary); border: none; color: var(--text-primary); border-radius: 5px; cursor: pointer; }
+        
+        .cart-total { font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; }
+        .checkout-btn { width: 100%; padding: 1.2rem; background: var(--neon-orange); color: var(--dark-bg); border: none; font-weight: 700; font-size: 1.1rem; border-radius: 8px; cursor: pointer; }
+        
+        .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1999; display: none; }
+        .cart-overlay.open { display: block; }
+        
+        footer { padding: 3rem 2rem; background: var(--dark-bg-secondary); text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4rem; }
+        
+        @media (max-width: 768px) { 
+            .nav-links { display: none; }
+            .cart-sidebar { width: 100%; right: -100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">GRACE & GRIT</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="merch.html" class="active">Shop</a></li>
+                <li><a href="staff.html">Staff Portal</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>GRACE & GRIT MERCANTILE</h1>
+            <p class="tagline">Where Faith Meets Fashion</p>
+        </div>
+        
+        <div class="coming-soon-overlay">
+            <div class="coming-soon-box">
+                <div class="badge-label">🚧 COMING SOON 🚧</div>
+                <h2>GRACE & GRIT</h2>
+                <p>Our merchandise store is launching soon.<br>Sign up to be notified!</p>
+                <div class="email-signup">
+                    <input type="email" placeholder="Enter your email">
+                    <button>Notify Me</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="categories">
+        <button class="category-btn active" onclick="filterProducts('all')">All</button>
+        <button class="category-btn" onclick="filterProducts('apparel')">Apparel</button>
+        <button class="category-btn" onclick="filterProducts('hats')">Hats</button>
+        <button class="category-btn" onclick="filterProducts('accessories')">Accessories</button>
+        <button class="category-btn" onclick="filterProducts('music')">Music</button>
+    </div>
+    
+    <main>
+        <div class="products-grid" id="products-grid"></div>
+    </main>
+    
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>YOUR CART</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+        <button class="checkout-btn" onclick="checkout()">CHECKOUT</button>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Grace & Grit Mercantile | A Division of Redemption Road MG</p>
+    </footer>
+    
+    <script>
+        const products = [
+            { id: 1, name: 'Redemption Road Trucker Hat', price: 29.99, category: 'hats', badge: 'Bestseller' },
+            { id: 2, name: 'Grace & Grit Classic Tee', price: 24.99, category: 'apparel' },
+            { id: 3, name: 'Neon Church Hoodie', price: 54.99, category: 'apparel', badge: 'New' },
+            { id: 4, name: 'Titan Studios Snapback', price: 27.99, category: 'hats' },
+            { id: 5, name: 'Redemption Road Stainless Tumbler', price: 19.99, category: 'accessories' },
+            { id: 6, name: 'Ray Flanary Debut CD', price: 14.99, category: 'music' },
+            { id: 7, name: 'Paige Sproles Acoustic EP', price: 12.99, category: 'music' },
+            { id: 8, name: 'Grace & Grit Embroidered Cap', price: 34.99, category: 'hats', badge: 'Limited' },
+            { id: 9, name: 'RRMG Canvas Tote', price: 15.99, category: 'accessories' },
+            { id: 10, name: 'Neon Church Vinyl Record', price: 29.99, category: 'music', badge: 'New' },
+            { id: 11, name: 'American Flag Distressed Tee', price: 26.99, category: 'apparel' },
+            { id: 12, name: 'Titan Marketing Joggers', price: 44.99, category: 'apparel' }
+        ];
+        
+        let cart = [];
+        
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('products-grid');
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+            
+            grid.innerHTML = filtered.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-${getIcon(product.category)}"></i>
+                        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">$${product.price.toFixed(2)}</p>
+                        ${product.category === 'apparel' ? `
+                            <div class="product-options">
+                                <button class="size-btn">S</button>
+                                <button class="size-btn">M</button>
+                                <button class="size-btn active">L</button>
+                                <button class="size-btn">XL</button>
+                            </div>
+                        ` : ''}
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">ADD TO CART</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function getIcon(category) {
+            const icons = { apparel: 'tshirt', hats: 'hat-cowboy', accessories: 'mug-hot', music: 'compact-disc' };
+            return icons[category] || 'box';
+        }
+        
+        function filterProducts(category) {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderProducts(category);
+        }
+        
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            
+            updateCart();
+        }
+        
+        function updateCart() {
+            document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-items').innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-image"><i class="fas fa-${getIcon(item.category)}"></i></div>
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-title">${item.name}</h4>
+                        <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cart-total').textContent = total.toFixed(2);
+        }
+        
+        function updateQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+            }
+            updateCart();
+        }
+        
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('open');
+            document.getElementById('cart-overlay').classList.toggle('open');
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            alert('Thank you for your order! This is a demo - checkout processing would happen here.');
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+        
+        renderProducts();
+    </script>
+</body>
+</html>
